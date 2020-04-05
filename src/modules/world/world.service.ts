@@ -4,7 +4,7 @@
  * File Created: Sunday, 5th April 2020 4:18:36 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Sunday, 5th April 2020 6:16:40 pm
+ * Last Modified: Sunday, 5th April 2020 10:06:43 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -17,7 +17,8 @@ import {
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { map, catchError } from 'rxjs/operators';
-import { of, EMPTY } from 'rxjs';
+import { of } from 'rxjs';
+import { WorldHelper } from './world.helper';
 
 export interface GetWorlDataOptions {
   country: string;
@@ -82,6 +83,15 @@ export class WorldService {
       map(data => {
         const limited = data.data.splice(+page * +limit, limit);
         return { data: limited, count: data.count };
+      }),
+      map(data => {
+        return data.data.map(country => {
+          const additionalData = WorldHelper.getCountryAdditionalDetails(
+            country.country,
+          );
+          if (additionalData) Object.assign(country, { ...additionalData });
+          return country;
+        });
       }),
       catchError(err => {
         Logger.error(`[Get World Stats] Error occured ${err}`);
