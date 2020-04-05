@@ -2151,7 +2151,7 @@
       "alpha3Code": "VGB",
       "callingCodes": ["1284"],
       "capital": "Road Town",
-      "altSpellings": ["VG"],
+      "altSpellings": ["VG", "British-Virgin-Islands", "U.S.-Virgin-Islands"],
       "region": "Americas",
       "subregion": "Caribbean",
       "population": 28514,
@@ -4747,7 +4747,7 @@
       "alpha3Code": "FLK",
       "callingCodes": ["500"],
       "capital": "Stanley",
-      "altSpellings": ["FK", "Islas Malvinas"],
+      "altSpellings": ["FK", "Falkland-Islands", "Islas Malvinas"],
       "region": "Americas",
       "subregion": "South America",
       "population": 2563,
@@ -4809,7 +4809,7 @@
       "alpha3Code": "FRO",
       "callingCodes": ["298"],
       "capital": "Tórshavn",
-      "altSpellings": ["FO", "Føroyar", "Færøerne"],
+      "altSpellings": ["FO", "Faeroe-Islands", "Føroyar", "Færøerne"],
       "region": "Europe",
       "subregion": "Northern Europe",
       "population": 49376,
@@ -6364,7 +6364,7 @@
       "cioc": ""
     },
     {
-      "name": "Holy See",
+      "name": "Vatican-City",
       "topLevelDomain": [".va"],
       "alpha2Code": "VA",
       "alpha3Code": "VAT",
@@ -6793,6 +6793,7 @@
       "altSpellings": [
         "CI",
         "Ivory Coast",
+        "Ivory-Coast",
         "Republic of Côte d'Ivoire",
         "République de Côte d'Ivoire"
       ],
@@ -6860,6 +6861,7 @@
       "capital": "Tehran",
       "altSpellings": [
         "IR",
+        "Iran",
         "Islamic Republic of Iran",
         "Jomhuri-ye Eslāmi-ye Irān"
       ],
@@ -8452,7 +8454,12 @@
       "alpha3Code": "MKD",
       "callingCodes": ["389"],
       "capital": "Skopje",
-      "altSpellings": ["MK", "Republic of Macedonia", "Република Македонија"],
+      "altSpellings": [
+        "MK",
+        "North-Macedonia",
+        "Republic of Macedonia",
+        "Република Македонија"
+      ],
       "region": "Europe",
       "subregion": "Southern Europe",
       "population": 2058539,
@@ -9336,7 +9343,12 @@
       "alpha3Code": "MDA",
       "callingCodes": ["373"],
       "capital": "Chișinău",
-      "altSpellings": ["MD", "Republic of Moldova", "Republica Moldova"],
+      "altSpellings": [
+        "MD",
+        "Moldova",
+        "Republic of Moldova",
+        "Republica Moldova"
+      ],
       "region": "Europe",
       "subregion": "Eastern Europe",
       "population": 3553100,
@@ -10879,7 +10891,12 @@
       "alpha3Code": "PSE",
       "callingCodes": ["970"],
       "capital": "Ramallah",
-      "altSpellings": ["PS", "State of Palestine", "Dawlat Filasṭin"],
+      "altSpellings": [
+        "PS",
+        "Palestine",
+        "State of Palestine",
+        "Dawlat Filasṭin"
+      ],
       "region": "Asia",
       "subregion": "Western Asia",
       "population": 4682467,
@@ -11739,6 +11756,7 @@
       "altSpellings": [
         "RU",
         "Rossiya",
+        "Russia",
         "Russian Federation",
         "Российская Федерация",
         "Rossiyskaya Federatsiya"
@@ -11906,6 +11924,7 @@
       "capital": "Gustavia",
       "altSpellings": [
         "BL",
+        "St.-Barth",
         "St. Barthelemy",
         "Collectivity of Saint Barthélemy",
         "Collectivité de Saint-Barthélemy"
@@ -12146,6 +12165,7 @@
       "capital": "Marigot",
       "altSpellings": [
         "MF",
+        "Saint-Martin",
         "Collectivity of Saint Martin",
         "Collectivité de Saint-Martin"
       ],
@@ -12212,6 +12232,7 @@
       "capital": "Saint-Pierre",
       "altSpellings": [
         "PM",
+        "Saint-Pierre-Miquelon",
         "Collectivité territoriale de Saint-Pierre-et-Miquelon"
       ],
       "region": "Americas",
@@ -12263,7 +12284,7 @@
       "alpha3Code": "VCT",
       "callingCodes": ["1784"],
       "capital": "Kingstown",
-      "altSpellings": ["VC"],
+      "altSpellings": ["VC", "St.-Vincent-Grenadines"],
       "region": "Americas",
       "subregion": "Caribbean",
       "population": 109991,
@@ -12913,7 +12934,7 @@
       "alpha3Code": "SXM",
       "callingCodes": ["1721"],
       "capital": "Philipsburg",
-      "altSpellings": ["SX"],
+      "altSpellings": ["SX", "Sint-Maarten"],
       "region": "Americas",
       "subregion": "Caribbean",
       "population": 38247,
@@ -13402,7 +13423,7 @@
       "alpha3Code": "KOR",
       "callingCodes": ["82"],
       "capital": "Seoul",
-      "altSpellings": ["KR", "Republic of Korea"],
+      "altSpellings": ["KR", "Republic of Korea", "S.-Korea"],
       "region": "Asia",
       "subregion": "Eastern Asia",
       "population": 50801405,
@@ -13848,6 +13869,7 @@
       "capital": "Lobamba",
       "altSpellings": [
         "SZ",
+        "Eswatini",
         "weSwatini",
         "Swatini",
         "Ngwane",
@@ -14057,6 +14079,7 @@
       "capital": "Damascus",
       "altSpellings": [
         "SY",
+        "Syria",
         "Syrian Arab Republic",
         "Al-Jumhūrīyah Al-ʻArabīyah As-Sūrīyah"
       ],
@@ -14232,7 +14255,7 @@
       "cioc": "TJK"
     },
     {
-      "name": "Tanzania, United Republic of",
+      "name": "Tanzania",
       "topLevelDomain": [".tz"],
       "alpha2Code": "TZ",
       "alpha3Code": "TZA",
@@ -14859,7 +14882,7 @@
       "alpha3Code": "TCA",
       "callingCodes": ["1649"],
       "capital": "Cockburn Town",
-      "altSpellings": ["TC"],
+      "altSpellings": ["TC", "Turks-and-Caicos"],
       "region": "Americas",
       "subregion": "Caribbean",
       "population": 31458,
@@ -15138,7 +15161,7 @@
       "cioc": "UAE"
     },
     {
-      "name": "United Kingdom of Great Britain and Northern Ireland",
+      "name": "UK",
       "topLevelDomain": [".uk"],
       "alpha2Code": "GB",
       "alpha3Code": "GBR",
@@ -15471,7 +15494,7 @@
       "cioc": "VAN"
     },
     {
-      "name": "Venezuela (Bolivarian Republic of)",
+      "name": "Venezuela",
       "topLevelDomain": [".ve"],
       "alpha2Code": "VE",
       "alpha3Code": "VEN",
@@ -15537,7 +15560,7 @@
       "cioc": "VEN"
     },
     {
-      "name": "Viet Nam",
+      "name": "Vietnam",
       "topLevelDomain": [".vn"],
       "alpha2Code": "VN",
       "alpha3Code": "VNM",

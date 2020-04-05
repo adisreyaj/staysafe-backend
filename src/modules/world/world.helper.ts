@@ -4,7 +4,7 @@
  * File Created: Sunday, 5th April 2020 9:22:14 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Sunday, 5th April 2020 9:29:21 pm
+ * Last Modified: Sunday, 5th April 2020 10:54:17 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -25,9 +25,22 @@ export interface CountryAdditionalDetails {
 
 export class WorldHelper {
   static getCountryAdditionalDetails(countryName: string) {
-    const country = <CountryData>(
-      countries.find(country => country.name === countryName)
-    );
+    const country = <CountryData>countries.find(country => {
+      const translatedNames = Object.keys(country.translations).map(
+        item => country.translations[item],
+      );
+      const alternateCountryNames = [
+        ...country.altSpellings,
+        ...translatedNames,
+      ];
+      return (
+        country.name.toLowerCase() === countryName.toLowerCase() ||
+        country.nativeName.toLowerCase() === countryName.toLowerCase() ||
+        country.name.toLowerCase() ===
+          this.dashToSpace(countryName.toLowerCase()) ||
+        alternateCountryNames.includes(countryName)
+      );
+    });
     if (country) {
       return this.extractRequiredDataFromCountry(country);
     }
@@ -55,5 +68,11 @@ export class WorldHelper {
         long: latlng[1],
       },
     };
+  }
+
+  private static dashToSpace(countryName: string) {
+    return countryName
+      .split('-')
+      .reduce((country, item) => `${country} ${item}`);
   }
 }
