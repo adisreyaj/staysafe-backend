@@ -4,7 +4,7 @@
  * File Created: Sunday, 5th April 2020 4:18:36 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Sunday, 5th April 2020 6:13:10 pm
+ * Last Modified: Sunday, 5th April 2020 6:16:40 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -35,7 +35,7 @@ export class WorldService {
   constructor(private config: ConfigService, private http: HttpService) {
     this.countryDataEndpoint = this.config.get('WORLD_STATS_URL');
     this.rapidAPIHost = this.config.get('X_RAPIDAPI_HOST');
-    this.rapidAPIKey = this.config.get('X_RAPIDAPI_Key');
+    this.rapidAPIKey = this.config.get('X_RAPIDAPI_KEY');
   }
 
   async getWorldData({
