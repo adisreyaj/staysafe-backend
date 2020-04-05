@@ -4,7 +4,7 @@
  * File Created: Sunday, 5th April 2020 1:45:13 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Sunday, 5th April 2020 6:45:31 pm
+ * Last Modified: Sunday, 5th April 2020 7:17:33 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -19,6 +19,6 @@ async function bootstrap() {
   AppConfiguration.setup(app);
   app.setGlobalPrefix('api/v1');
   const configService = app.get(ConfigService);
-  await app.listen(configService.get('PORT') ?? 3000);
+  await app.listen(process.env.PORT);
 }
 bootstrap();
