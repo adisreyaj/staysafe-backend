@@ -4,7 +4,7 @@
  * File Created: Sunday, 5th April 2020 5:17:56 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Sunday, 5th April 2020 5:58:56 pm
+ * Last Modified: Sunday, 5th April 2020 8:43:43 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -15,11 +15,13 @@ import {
   InternalServerErrorException,
   Query,
   Logger,
+  UseInterceptors,
+  CacheInterceptor,
 } from '@nestjs/common';
 import { WorldService } from './world.service';
-import { tap } from 'rxjs/operators';
 
 @Controller('world')
+@UseInterceptors(CacheInterceptor)
 export class WorldController {
   constructor(private worldService: WorldService) {}
   @Get()
