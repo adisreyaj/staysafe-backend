@@ -18,6 +18,7 @@ import { SmsModule } from './core/services/sms/sms.module';
 import { WorldModule } from './modules/world/world.module';
 import { HttpConfigService } from './core/config/http-config/http-config.service';
 import { CacheConfigService } from './core/config/cache-config/cache-config.service';
+import { IndiaModule } from './modules/india/india.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { CacheConfigService } from './core/config/cache-config/cache-config.serv
     CommunicationModule,
     SmsModule,
     WorldModule,
+    IndiaModule,
   ],
   controllers: [],
   providers: [AppService, HttpConfigService, CacheConfigService],
