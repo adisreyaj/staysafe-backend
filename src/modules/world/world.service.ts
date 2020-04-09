@@ -4,7 +4,7 @@
  * File Created: Sunday, 5th April 2020 4:18:36 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Sunday, 5th April 2020 10:06:43 pm
+ * Last Modified: Thursday, 9th April 2020 10:29:38 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -33,10 +33,12 @@ export class WorldService {
   countryDataEndpoint: string;
   rapidAPIHost: string;
   rapidAPIKey: string;
+  worldInsightsEndpoint: string;
   constructor(private config: ConfigService, private http: HttpService) {
     this.countryDataEndpoint = this.config.get('WORLD_STATS_URL');
     this.rapidAPIHost = this.config.get('X_RAPIDAPI_HOST');
     this.rapidAPIKey = this.config.get('X_RAPIDAPI_KEY');
+    this.worldInsightsEndpoint = this.config.get('WORLD_TOTAL_NUMBERS');
   }
 
   async getWorldData({
@@ -103,5 +105,10 @@ export class WorldService {
         );
       }),
     );
+  }
+
+  async getWorldStats() {
+    const response = this.http.get<any>(this.worldInsightsEndpoint);
+    return response.pipe(map(res => res.data));
   }
 }
