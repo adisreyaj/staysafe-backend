@@ -4,7 +4,7 @@
  * File Created: Wednesday, 8th April 2020 8:35:04 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Friday, 10th April 2020 1:53:47 pm
+ * Last Modified: Friday, 10th April 2020 2:47:03 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -26,7 +26,7 @@ export interface CountryData {
   geoData?: GeoData;
 }
 
-export interface CountryDataMongoose extends Document {}
+export interface CountryDataMongoose extends CountryData, Document {}
 
 export interface Cases {
   new: null | string;

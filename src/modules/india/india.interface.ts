@@ -4,10 +4,12 @@
  * File Created: Wednesday, 8th April 2020 9:25:21 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Wednesday, 8th April 2020 9:59:26 pm
+ * Last Modified: Friday, 10th April 2020 2:47:24 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
+
+import { Document } from 'mongoose';
 
 export interface StateData {
   active: string;
@@ -21,3 +23,5 @@ export interface StateData {
   state: string;
   statecode: string;
 }
+
+export interface StateDataMongoose extends StateData, Document {}

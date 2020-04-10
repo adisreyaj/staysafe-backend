@@ -4,7 +4,7 @@
  * File Created: Wednesday, 8th April 2020 9:24:37 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Wednesday, 8th April 2020 11:29:38 pm
+ * Last Modified: Friday, 10th April 2020 2:52:33 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -14,6 +14,8 @@ import {
   Get,
   UseInterceptors,
   CacheInterceptor,
+  Query,
+  Post,
 } from '@nestjs/common';
 import { IndiaService } from './india.service';
 
@@ -28,7 +30,12 @@ export class IndiaController {
   }
 
   @Get('/states')
-  async getStateData() {
-    return await this.indiaService.getIndiaStateData();
+  async getStateData(@Query() query) {
+    return await this.indiaService.getIndiaStateData(query);
+  }
+
+  @Post('refresh')
+  async refreshCountryData() {
+    return await this.indiaService.refreshIndiaData();
   }
 }

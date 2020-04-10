@@ -4,7 +4,7 @@
  * File Created: Sunday, 5th April 2020 4:18:36 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Friday, 10th April 2020 2:18:33 pm
+ * Last Modified: Friday, 10th April 2020 2:53:10 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -115,8 +115,7 @@ export class WorldService {
         return 'Failed to injest Country Data';
       }),
       catchError(err => {
-        Logger.error(`[Get World Stats] Error occured ${err}`);
-        Logger.debug(typeof err);
+        Logger.error(`[Get World Data] Error occured ${err}`);
         return of(
           new InternalServerErrorException({
             message: 'Failed to retrieve data',
