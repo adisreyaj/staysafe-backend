@@ -6,11 +6,11 @@
   "private": true,
   "license": "Apache License Version 2.0",
   "scripts": {
-    "prebuild": "rimraf dist",
+    "prebuild": "rimraf dist && node decrypt.js",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "node dist/main",
-    "prestart": "node decrypt.js",
+    "pres": "node decrypt.js",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
