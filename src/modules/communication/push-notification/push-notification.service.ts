@@ -4,7 +4,7 @@
  * File Created: Friday, 10th April 2020 7:33:13 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Friday, 10th April 2020 9:11:58 pm
+ * Last Modified: Saturday, 11th April 2020 12:54:15 am
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -14,7 +14,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as admin from 'firebase-admin';
 
-import { service_account } from '../../../assets/firebase_config.json';
+import { service_account } from '../../../../firebase_config.json';
 import { PushTokenDTO } from './push-token.dto';
 import { PushTokenMongoose } from './push-notification.interface';
 @Injectable()
