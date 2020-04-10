@@ -4,7 +4,7 @@
  * File Created: Sunday, 5th April 2020 5:17:56 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Thursday, 9th April 2020 10:30:18 pm
+ * Last Modified: Friday, 10th April 2020 2:02:33 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -17,6 +17,7 @@ import {
   Logger,
   UseInterceptors,
   CacheInterceptor,
+  Post,
 } from '@nestjs/common';
 import { WorldService } from './world.service';
 
@@ -31,5 +32,10 @@ export class WorldController {
   @Get('')
   async getWorldData(@Query() query) {
     return await this.worldService.getWorldData(query);
+  }
+
+  @Post('refresh')
+  async refreshCountryData() {
+    return await this.worldService.refreshWorldData();
   }
 }

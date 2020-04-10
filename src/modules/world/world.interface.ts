@@ -4,10 +4,12 @@
  * File Created: Wednesday, 8th April 2020 8:35:04 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Wednesday, 8th April 2020 8:46:02 pm
+ * Last Modified: Friday, 10th April 2020 1:53:47 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
+
+import { Document } from 'mongoose';
 
 export interface CountryData {
   country: string;
@@ -23,6 +25,8 @@ export interface CountryData {
   population?: number;
   geoData?: GeoData;
 }
+
+export interface CountryDataMongoose extends Document {}
 
 export interface Cases {
   new: null | string;
