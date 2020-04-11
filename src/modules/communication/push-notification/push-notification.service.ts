@@ -4,7 +4,7 @@
  * File Created: Friday, 10th April 2020 7:33:13 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Saturday, 11th April 2020 1:23:55 am
+ * Last Modified: Sunday, 12th April 2020 2:58:17 am
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -43,36 +43,40 @@ export class PushNotificationService {
     }
   }
 
-  private async sendPushNotification() {
+  async sendPushNotification() {
     try {
       await admin
         .messaging()
-        .send(
-          this.createPushNotificationMessageForTopic(
-            'general',
-            'This is a test message',
-          ),
-        );
-      Logger.debug('[Push Notification] Sent successfully');
+        .send(this.createPushNotificationMessageForTopic());
+      return 'Sent';
     } catch (error) {
       Logger.error(`[Push Notification] Failed with ${error}`);
     }
   }
 
-  private createPushNotificationMessageForTopic(
-    topic: string,
-    message: string,
-  ) {
-    const pushNoitifcationMessage = {
+  private createPushNotificationMessageForTopic() {
+    const notificationData: admin.messaging.WebpushConfig = {
       notification: {
-        title: 'Test',
-        body: message,
-        imageUrl: 'https://staysafe.sreyaj.com/assets/images/logo.svg',
+        title: 'Welcome to StaySafe - Track, Learn and Educate',
+        body:
+          'Learn and Create awareness on COVID 19 pandemic that is currently taking down the world by storm',
+        image: 'https://staysafe.sreyaj.com/assets/images/stay-safe.png',
+        badge:
+          'https://staysafe.sreyaj.com/assets/images/favicons/favicon-32x32.png',
+        icon:
+          'https://staysafe.sreyaj.com/assets/images/favicons/favicon-32x32.png',
+        vibrate: [100, 50, 20, 20],
       },
+      fcmOptions: {
+        link: 'https://staysafe.sreyaj.com',
+      },
+    };
+    const pushNoitifcationMessage: admin.messaging.Message = {
+      webpush: notificationData,
       data: {
         foo: 'bar',
       },
-      topic,
+      topic: 'general',
     };
 
     return pushNoitifcationMessage;

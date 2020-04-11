@@ -4,7 +4,7 @@
  * File Created: Sunday, 5th April 2020 2:53:51 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Friday, 10th April 2020 7:45:00 pm
+ * Last Modified: Sunday, 12th April 2020 2:42:27 am
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -15,6 +15,7 @@ import {
   Header,
   Body,
   InternalServerErrorException,
+  Get,
 } from '@nestjs/common';
 import { twiml } from 'twilio';
 import { InboundCallDTO } from './inbound-call.dto';
@@ -24,6 +25,11 @@ import { PushTokenDTO } from './push-notification/push-token.dto';
 @Controller('com')
 export class CommunicationController {
   constructor(private pushNotificationService: PushNotificationService) {}
+
+  @Get('test')
+  async testNotification() {
+    return await this.pushNotificationService.sendPushNotification();
+  }
 
   @Post('/call/inbound')
   @Header('Content-Type', 'text/xml')
