@@ -4,7 +4,7 @@
  * File Created: Monday, 13th April 2020 8:14:23 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Tuesday, 14th April 2020 1:17:12 am
+ * Last Modified: Tuesday, 14th April 2020 1:45:56 am
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -40,6 +40,15 @@ export class SmsService {
     this.twilioNumber = this.configService.get('TWILIO_PHONE_NUMBER');
   }
 
+  /**
+   * Send SMS to a particular number with the speicied body.
+   *
+   * The function validates the data and then add the a job to the
+   * SMS Queue which will be then processed by the ```SMSConsumer```
+   *
+   * @param to - to which phone number the SMS needs to be send
+   * @param body = the contents of the SMS
+   */
   async sendSMS({ to, body }: SMSJobData) {
     if (!to)
       return new BadRequestException(
@@ -64,6 +73,15 @@ export class SmsService {
     }
   }
 
+  /**
+   * Save a phone number to the Database.
+   * First it checks whether the phone number has already been registered in the system or not.
+   * if already present a bad request will be thrown.
+   *
+   * After validation the phone number will be saved to the DB
+   *
+   * @param smsDTO -  the request bodu containing the phone number to be saved
+   */
   async savePhoneNumber(smsDTO: SmsDTO) {
     const { phone } = smsDTO;
     const checkIfNumberExists = await this.smsModel
@@ -83,6 +101,13 @@ export class SmsService {
     }
   }
 
+  /**
+   * The function can be called to make a phone number as verified.
+   * Initially when the phone number is added to the datanase, the **verified** flag
+   * will be false.
+   *
+   * @param phone - phone number to be marked as verified
+   */
   async markUserAsVerified(phone: string) {
     const phoneNumberRecord = await this.smsModel
       .findOneAndUpdate({ phone }, { verified: true }, { new: true })

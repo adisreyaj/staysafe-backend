@@ -4,7 +4,7 @@
  * File Created: Monday, 13th April 2020 11:32:26 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Tuesday, 14th April 2020 1:17:37 am
+ * Last Modified: Tuesday, 14th April 2020 1:33:15 am
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -26,8 +26,19 @@ export class VoiceCallService {
     @Inject(forwardRef(() => SmsService))
     private smsService: SmsService,
   ) {}
-
-  async inboundCallWebhook(body: InboundCallDTO) {
+  /**
+   * The verification call webhook will be called by Twilio when the
+   * user registers their phone number for updates.
+   *
+   * The function generates TwiML which features the **Gather** functionality
+   * of twilio. When the call is made, the user will be asked to press **1** to
+   * confirm their subscription.
+   *
+   * If the user confirms, a call is made to the ```markuserVerified()``` function
+   * which will update the phone number as verified in the DB
+   * @param body - the data that will be posted by TWILIO
+   */
+  async verificationCallWebhook(body: InboundCallDTO) {
     const twiML = new twiml.VoiceResponse();
     function gather() {
       const gatherNode = twiML.gather({ numDigits: 1 });
@@ -59,7 +70,10 @@ export class VoiceCallService {
     // If the user doesn't enter input, loop
     return twiML.toString();
   }
-
+  /**
+   * Adds an outbound verification call in the voice call Queue.
+   * @param  phoneNumber - the phone number which needs to be called for verification
+   */
   async createVerificationCall(phoneNumber: string) {
     return await this.voiceCallQueue.add({
       to: phoneNumber,
@@ -67,6 +81,11 @@ export class VoiceCallService {
     });
   }
 
+  /**
+   * Relays the request to mark a phone number as verified to the
+   * SMS service.
+   * @param phone - phone number to be marked as verified
+   */
   private async markUserVerified(phone: string) {
     return this.smsService.markUserAsVerified(phone);
   }
