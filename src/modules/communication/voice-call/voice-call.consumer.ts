@@ -4,7 +4,7 @@
  * File Created: Monday, 13th April 2020 10:25:27 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Tuesday, 14th April 2020 12:12:53 am
+ * Last Modified: Tuesday, 14th April 2020 1:25:35 am
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -28,10 +28,11 @@ export class VoiceCallConsumer {
   @Process()
   async sendVoiceCall(job: Job<VoiceCallJobData>) {
     const { to } = job.data;
+    const twilMLAppSID = this.configService.get('TWILIO_VERIFICATION_APP_SID');
     const response = await this.twilio.calls.create({
       to,
       from: this.twilioNumber,
-      applicationSid: 'AP541f6b3a6c3cb1250357cdea687dd962',
+      applicationSid: twilMLAppSID,
     });
     return response;
   }
