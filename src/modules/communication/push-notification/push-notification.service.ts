@@ -4,13 +4,15 @@
  * File Created: Friday, 10th April 2020 7:33:13 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Sunday, 12th April 2020 2:58:17 am
+ * Last Modified: Monday, 13th April 2020 10:22:30 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
 
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { InjectQueue } from '@nestjs/bull';
+import { Queue } from 'bull';
 import { Model } from 'mongoose';
 import * as admin from 'firebase-admin';
 
@@ -22,6 +24,7 @@ export class PushNotificationService {
   constructor(
     @InjectModel('Push_Notifications')
     private pushModel: Model<PushTokenMongoose>,
+    @InjectQueue('push_notification') private pushNotificationQueue: Queue,
   ) {
     admin.initializeApp({
       credential: admin.credential.cert(
