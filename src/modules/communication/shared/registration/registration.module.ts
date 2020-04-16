@@ -4,7 +4,7 @@
  * File Created: Tuesday, 14th April 2020 12:57:24 am
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Tuesday, 14th April 2020 1:19:11 am
+ * Last Modified: Thursday, 16th April 2020 9:14:39 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -28,6 +28,7 @@ import { SMSSchema } from '../../sms/sms.schema';
         redis: {
           host: configService.get('REDIS_HOST'),
           port: +configService.get('REDIS_PORT'),
+          password: configService.get('REDIS_PASSWORD'),
           db: 2,
         },
       }),
@@ -40,6 +41,7 @@ import { SMSSchema } from '../../sms/sms.schema';
         redis: {
           host: configService.get('REDIS_HOST'),
           port: +configService.get('REDIS_PORT'),
+          password: configService.get('REDIS_PASSWORD'),
           db: 3,
         },
       }),

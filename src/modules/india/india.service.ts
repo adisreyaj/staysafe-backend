@@ -4,7 +4,7 @@
  * File Created: Wednesday, 8th April 2020 9:24:45 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Friday, 10th April 2020 2:57:13 pm
+ * Last Modified: Thursday, 16th April 2020 9:29:15 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -16,8 +16,8 @@ import {
   Logger,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { map, filter, catchError } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
@@ -53,6 +53,7 @@ export class IndiaService {
     return response.pipe(
       map(data => data.statewise),
       map(states => states.filter(state => state.statecode === 'TT')),
+      map(data => data[0]),
     );
   }
 

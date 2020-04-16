@@ -4,7 +4,7 @@
  * File Created: Wednesday, 8th April 2020 9:24:37 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Friday, 10th April 2020 2:52:33 pm
+ * Last Modified: Thursday, 16th April 2020 9:22:21 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -24,7 +24,7 @@ import { IndiaService } from './india.service';
 export class IndiaController {
   constructor(private indiaService: IndiaService) {}
 
-  @Get('/total')
+  @Get('/stats')
   async getIndiaTotalStats() {
     return await this.indiaService.getIndiaTotalStats();
   }

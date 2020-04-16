@@ -4,7 +4,7 @@
  * File Created: Monday, 13th April 2020 8:08:53 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Monday, 13th April 2020 10:52:04 pm
+ * Last Modified: Thursday, 16th April 2020 9:14:43 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -25,6 +25,7 @@ import { EmailConsumer } from './email.consumer';
         redis: {
           host: configService.get('REDIS_HOST'),
           port: +configService.get('REDIS_PORT'),
+          password: configService.get('REDIS_PASSWORD'),
           db: 0,
         },
       }),

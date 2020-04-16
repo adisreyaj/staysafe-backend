@@ -4,7 +4,7 @@
  * File Created: Monday, 13th April 2020 9:45:29 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Monday, 13th April 2020 10:51:48 pm
+ * Last Modified: Thursday, 16th April 2020 9:14:43 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -31,6 +31,7 @@ import { PushNotificationConsumer } from './push-notification.consumer';
         redis: {
           host: configService.get('REDIS_HOST'),
           port: +configService.get('REDIS_PORT'),
+          password: configService.get('REDIS_PASSWORD'),
           db: 1,
         },
       }),
