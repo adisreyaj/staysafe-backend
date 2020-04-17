@@ -4,7 +4,7 @@
  * File Created: Sunday, 5th April 2020 4:18:36 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Friday, 10th April 2020 2:53:10 pm
+ * Last Modified: Friday, 17th April 2020 11:50:38 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -74,7 +74,6 @@ export class WorldService {
       .sort([[sortBy, +orderBy]])
       .lean()
       .exec();
-
     return countries;
   }
 

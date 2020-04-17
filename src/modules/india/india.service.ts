@@ -4,7 +4,7 @@
  * File Created: Wednesday, 8th April 2020 9:24:45 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Thursday, 16th April 2020 9:29:15 pm
+ * Last Modified: Friday, 17th April 2020 11:28:15 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -73,7 +73,6 @@ export class IndiaService {
       .sort([[sortBy, +orderBy]])
       .lean()
       .exec();
-
     return states;
   }
 
