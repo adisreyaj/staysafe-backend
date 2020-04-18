@@ -17,6 +17,7 @@ import { IndiaService } from './india.service';
 import { HttpConfigService } from '../../core/config/http-config/http-config.service';
 import { CacheConfigService } from '../../core/config/cache-config/cache-config.service';
 import { IndiaSchema } from './india.schema';
+import { IndiaCronService } from './india-cron/india-cron.service';
 
 @Module({
   imports: [
@@ -29,6 +30,6 @@ import { IndiaSchema } from './india.schema';
     MongooseModule.forFeature([{ name: 'India', schema: IndiaSchema }]),
   ],
   controllers: [IndiaController],
-  providers: [IndiaService],
+  providers: [IndiaService, IndiaCronService],
 })
 export class IndiaModule {}

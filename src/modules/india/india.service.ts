@@ -4,7 +4,7 @@
  * File Created: Wednesday, 8th April 2020 9:24:45 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Friday, 17th April 2020 11:28:15 pm
+ * Last Modified: Sunday, 19th April 2020 1:29:20 am
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -82,6 +82,7 @@ export class IndiaService {
       map(data => data.statewise),
       map(states => states.filter(state => state.statecode !== 'TT')),
       map(async data => {
+        await this.cleanInidaata();
         const savedData = await this.saveIndiaData(data);
         if (savedData) {
           return 'Ingested India Data';
@@ -106,5 +107,10 @@ export class IndiaService {
   private async saveIndiaData(data: StateData[]) {
     Logger.debug(`[Ingesting Data to Mongo]`);
     return await this.indiaModel.insertMany(data);
+  }
+
+  private async cleanInidaata() {
+    Logger.debug(`[India Service] Cleaning india data`);
+    await this.indiaModel.remove({});
   }
 }

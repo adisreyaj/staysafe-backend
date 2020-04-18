@@ -4,7 +4,7 @@
  * File Created: Sunday, 5th April 2020 4:18:36 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Friday, 17th April 2020 11:50:38 pm
+ * Last Modified: Sunday, 19th April 2020 1:28:43 am
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -107,6 +107,7 @@ export class WorldService {
         });
       }),
       map(async data => {
+        await this.cleanCountryData();
         const savedData = await this.saveCountryData(data);
         if (savedData) {
           return 'Ingested Country Data';
@@ -136,5 +137,10 @@ export class WorldService {
   private async saveCountryData(data: CountryData[]) {
     Logger.debug(`[Ingesting Data to Mongo]`);
     return await this.countryModel.insertMany(data);
+  }
+
+  private async cleanCountryData() {
+    Logger.debug(`[World Service] Cleaning world data`);
+    await this.countryModel.remove({});
   }
 }

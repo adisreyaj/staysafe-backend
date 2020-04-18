@@ -4,14 +4,15 @@
  * File Created: Sunday, 5th April 2020 1:45:13 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Tuesday, 14th April 2020 1:21:05 am
+ * Last Modified: Sunday, 19th April 2020 1:32:13 am
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
 
-import { Module, CacheModule } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ScheduleModule } from '@nestjs/schedule';
 
 import { AppService } from './app.service';
 import { CommunicationModule } from './modules/communication/communication.module';
@@ -33,6 +34,7 @@ import { NewsModule } from './modules/news/news.module';
       }),
       inject: [ConfigService],
     }),
+    ScheduleModule.forRoot(),
     CommunicationModule,
     WorldModule,
     IndiaModule,
