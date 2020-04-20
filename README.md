@@ -1,7 +1,7 @@
 <h1 align="center">Welcome to Stay Safe 👋</h1>
 <p align="center">
   <a href="https://github.com/kefranabg/readme-md-generator/blob/master/LICENSE">
-    <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-yellow.svg" target="_blank" />
+    <img alt="License: Apache License 2.0" src="https://img.shields.io/badge/license-Apache License 2.0-yellow.svg" target="_blank" />
   </a>
 
   <a href="https://github.com/frinyvonnick/gitmoji-changelog">
@@ -63,7 +63,7 @@ WORLD_STATS_URL=
 WORLD_TOTAL_NUMBERS=
 INDIA_STATS_URL=
 
-#News API Confiuration
+#News API Configuration
 NEWSAPI_KEY=
 NEWSAPI_URL=
 
@@ -109,6 +109,6 @@ Please ⭐️ this repository if this project helped you!
 
 ## 📝 License
 
-Copyright © 2020 [Adithya Sreyah](https://github.com/adisreyaj).<br />
+Copyright © 2020 [Adithya Sreyaj](https://github.com/adisreyaj).<br />
 
-This project is [MIT](https://github.com/adisreyaj/staysafe-backend/blob/master/LICENSE.md) licensed.
+This project is [Apache License 2.0](https://github.com/adisreyaj/staysafe-backend/blob/master/LICENSE.md) licensed.
