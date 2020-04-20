@@ -4,7 +4,7 @@
  * File Created: Monday, 13th April 2020 9:45:29 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Thursday, 16th April 2020 9:14:43 pm
+ * Last Modified: Monday, 20th April 2020 11:31:21 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -40,5 +40,6 @@ import { PushNotificationConsumer } from './push-notification.consumer';
   ],
   controllers: [PushNotificationController],
   providers: [PushNotificationService, PushNotificationConsumer],
+  exports: [PushNotificationService],
 })
 export class PushNotificationModule {}

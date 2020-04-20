@@ -4,7 +4,7 @@
  * File Created: Sunday, 5th April 2020 4:18:36 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Sunday, 19th April 2020 1:28:43 am
+ * Last Modified: Tuesday, 21st April 2020 12:03:44 am
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -19,10 +19,14 @@ import { ConfigService } from '@nestjs/config';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { map, catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 
 import { WorldHelper } from './world.helper';
-import { CountryData, CountryDataMongoose } from './world.interface';
+import {
+  CountryData,
+  CountryDataMongoose,
+  WorldStatsData,
+} from './world.interface';
 
 export interface GetWorlDataOptions {
   country: string;
@@ -125,8 +129,10 @@ export class WorldService {
     );
   }
 
-  async getWorldStats() {
-    const response = this.http.get<any>(this.worldInsightsEndpoint);
+  getWorldStats() {
+    const response = this.http.get<WorldStatsData>(this.worldInsightsEndpoint, {
+      headers: { 'content-type': 'application/json' },
+    });
     return response.pipe(map(res => res.data));
   }
 

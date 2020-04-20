@@ -4,12 +4,13 @@
  * File Created: Sunday, 5th April 2020 9:22:14 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Sunday, 5th April 2020 10:54:17 pm
+ * Last Modified: Tuesday, 21st April 2020 12:07:21 am
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
 import { countries } from '../../assets/country.json';
 import { CountryData } from 'src/core/interfaces/country.interface';
+import { WorldStatsData } from './world.interface';
 
 export interface CountryAdditionalDetails {
   flag: string;
@@ -44,6 +45,20 @@ export class WorldHelper {
     if (country) {
       return this.extractRequiredDataFromCountry(country);
     }
+  }
+
+  public static constructDailyStatsPushMessage(
+    data: Pick<WorldStatsData, 'active' | 'deaths' | 'recovered'>,
+  ) {
+    const { active, recovered, deaths } = data;
+    const body = `Here is the daily report of COVID19 Cases:
+          Active: ${active}
+          Recovered: ${recovered},
+          Deaths: ${deaths}
+          #StaySafe - do your part
+          `;
+    const title = 'COVID 19 Stats WorldWide for the day';
+    return { title, body };
   }
 
   private static extractRequiredDataFromCountry(

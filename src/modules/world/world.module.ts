@@ -4,7 +4,7 @@
  * File Created: Sunday, 5th April 2020 4:18:28 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Sunday, 19th April 2020 1:31:52 am
+ * Last Modified: Tuesday, 21st April 2020 12:08:28 am
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -18,6 +18,7 @@ import { WorldController } from './world.controller';
 import { CacheConfigService } from 'src/core/config/cache-config/cache-config.service';
 import { CountrySchema } from './world.schema';
 import { WorldCronService } from './world-cron/world-cron.service';
+import { PushNotificationModule } from '../communication/push-notification/push-notification.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { WorldCronService } from './world-cron/world-cron.service';
       useClass: CacheConfigService,
     }),
     MongooseModule.forFeature([{ name: 'Country', schema: CountrySchema }]),
+    PushNotificationModule,
   ],
   providers: [WorldService, WorldCronService],
   controllers: [WorldController],

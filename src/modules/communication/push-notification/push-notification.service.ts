@@ -4,7 +4,7 @@
  * File Created: Friday, 10th April 2020 7:33:13 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Monday, 13th April 2020 10:22:30 pm
+ * Last Modified: Monday, 20th April 2020 11:48:54 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -12,6 +12,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { InjectQueue } from '@nestjs/bull';
+import { ConfigService } from '@nestjs/config';
 import { Queue } from 'bull';
 import { Model } from 'mongoose';
 import * as admin from 'firebase-admin';
@@ -24,13 +25,14 @@ export class PushNotificationService {
   constructor(
     @InjectModel('Push_Notifications')
     private pushModel: Model<PushTokenMongoose>,
+    private configService: ConfigService,
     @InjectQueue('push_notification') private pushNotificationQueue: Queue,
   ) {
     admin.initializeApp({
       credential: admin.credential.cert(
         service_account as admin.ServiceAccount,
       ),
-      databaseURL: 'https://staysafe-app.firebaseio.com',
+      databaseURL: this.configService.get('FIREBASE_DB_URI'),
     });
   }
   async saveToken(tokenDTO: PushTokenDTO) {
@@ -38,7 +40,11 @@ export class PushNotificationService {
     try {
       await admin.messaging().subscribeToTopic(tokenDTO.token, 'general');
       Logger.debug(`[Saving Push Notification] Subscribed to Topic`);
-      this.sendPushNotification();
+      this.sendPushNotification({
+        title: 'Welcome to StaySafe',
+        body:
+          'Thankyou for subscribing, we will be sending you timley notifications so that you can be aware of the situations around you',
+      });
       return await tokenToSave.save();
     } catch (error) {
       Logger.error(`[Push Notification Save] Failed with ${error}`);
@@ -46,23 +52,22 @@ export class PushNotificationService {
     }
   }
 
-  async sendPushNotification() {
+  async sendPushNotification(data: { title: string; body: string }) {
     try {
       await admin
         .messaging()
-        .send(this.createPushNotificationMessageForTopic());
+        .send(this.createPushNotificationMessageForTopic(data));
       return 'Sent';
     } catch (error) {
       Logger.error(`[Push Notification] Failed with ${error}`);
     }
   }
 
-  private createPushNotificationMessageForTopic() {
+  private createPushNotificationMessageForTopic({ title, body }) {
     const notificationData: admin.messaging.WebpushConfig = {
       notification: {
-        title: 'Welcome to StaySafe - Track, Learn and Educate',
-        body:
-          'Learn and Create awareness on COVID 19 pandemic that is currently taking down the world by storm',
+        title,
+        body,
         image: 'https://staysafe.sreyaj.com/assets/images/stay-safe.png',
         badge:
           'https://staysafe.sreyaj.com/assets/images/favicons/favicon-32x32.png',
@@ -76,12 +81,8 @@ export class PushNotificationService {
     };
     const pushNoitifcationMessage: admin.messaging.Message = {
       webpush: notificationData,
-      data: {
-        foo: 'bar',
-      },
       topic: 'general',
     };
-
     return pushNoitifcationMessage;
   }
 }

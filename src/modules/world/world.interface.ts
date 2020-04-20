@@ -4,12 +4,28 @@
  * File Created: Wednesday, 8th April 2020 8:35:04 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Friday, 10th April 2020 2:47:03 pm
+ * Last Modified: Monday, 20th April 2020 11:58:07 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
 
 import { Document } from 'mongoose';
+
+export interface WorldStatsData {
+  updated: number;
+  cases: number;
+  todayCases: number;
+  deaths: number;
+  todayDeaths: number;
+  recovered: number;
+  active: number;
+  critical: number;
+  casesPerOneMillion: number;
+  deathsPerOneMillion: number;
+  tests: number;
+  testsPerOneMillion: number;
+  affectedCountries: number;
+}
 
 export interface CountryData {
   country: string;

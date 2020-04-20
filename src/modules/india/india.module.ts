@@ -4,7 +4,7 @@
  * File Created: Wednesday, 8th April 2020 9:23:54 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Friday, 10th April 2020 2:54:02 pm
+ * Last Modified: Monday, 20th April 2020 11:31:31 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -18,6 +18,7 @@ import { HttpConfigService } from '../../core/config/http-config/http-config.ser
 import { CacheConfigService } from '../../core/config/cache-config/cache-config.service';
 import { IndiaSchema } from './india.schema';
 import { IndiaCronService } from './india-cron/india-cron.service';
+import { PushNotificationModule } from '../communication/push-notification/push-notification.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { IndiaCronService } from './india-cron/india-cron.service';
       useClass: CacheConfigService,
     }),
     MongooseModule.forFeature([{ name: 'India', schema: IndiaSchema }]),
+    PushNotificationModule,
   ],
   controllers: [IndiaController],
   providers: [IndiaService, IndiaCronService],
