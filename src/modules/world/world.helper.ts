@@ -4,7 +4,7 @@
  * File Created: Sunday, 5th April 2020 9:22:14 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Tuesday, 21st April 2020 12:07:21 am
+ * Last Modified: Friday, 24th April 2020 12:38:34 am
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -59,6 +59,19 @@ export class WorldHelper {
           `;
     const title = 'COVID 19 Stats WorldWide for the day';
     return { title, body };
+  }
+
+  public static constructDailyStatsSMSMessage(
+    data: Pick<WorldStatsData, 'active' | 'deaths' | 'recovered'>,
+  ) {
+    const { active, recovered, deaths } = data;
+    const message =
+      'Here is the daily report of COVID19 Cases:' +
+      `Active: ${active}` +
+      `Recovered: ${recovered},` +
+      `Deaths: ${deaths}` +
+      `#StaySafe - do your part`;
+    return message;
   }
 
   private static extractRequiredDataFromCountry(
