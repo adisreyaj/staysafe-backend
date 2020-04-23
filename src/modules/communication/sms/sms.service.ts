@@ -4,7 +4,7 @@
  * File Created: Monday, 13th April 2020 8:14:23 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Tuesday, 14th April 2020 1:45:56 am
+ * Last Modified: Friday, 24th April 2020 12:22:42 am
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -94,7 +94,7 @@ export class SmsService {
     try {
       await phoneNumberToSave.save();
       this.callForVerification(phone);
-      return 'Number subscribed successfully';
+      return { message: 'Number subscribed successfully' };
     } catch (error) {
       Logger.error(`[Push Notification Save] Failed with ${error}`);
       return undefined;
