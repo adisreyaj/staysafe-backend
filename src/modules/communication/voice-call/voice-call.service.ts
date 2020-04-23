@@ -4,7 +4,7 @@
  * File Created: Monday, 13th April 2020 11:32:26 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Tuesday, 14th April 2020 1:33:15 am
+ * Last Modified: Friday, 24th April 2020 12:13:48 am
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -18,6 +18,7 @@ import { VoiceCallType } from './voice-call.interface';
 import { VoiceCallHelper } from './voice-call.helper';
 import { SmsService } from '../sms/sms.service';
 import { InboundCallDTO } from './voice-call.dto';
+import { smsResources } from '../../../core/config/resource-files/communication';
 
 @Injectable()
 export class VoiceCallService {
@@ -57,6 +58,10 @@ export class VoiceCallService {
         const res = await this.markUserVerified(body.To);
         if (res) {
           twiML.say(VoiceCallHelper.constructVerificationSuccessMessage());
+          this.smsService.sendSMS({
+            to: body.To,
+            body: smsResources.registerMessage,
+          });
         } else {
           twiML.say(VoiceCallHelper.constructVerificationFailureMessage());
         }

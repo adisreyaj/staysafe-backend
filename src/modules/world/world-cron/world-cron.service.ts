@@ -4,7 +4,7 @@
  * File Created: Sunday, 19th April 2020 1:36:04 am
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Tuesday, 21st April 2020 12:07:57 am
+ * Last Modified: Friday, 24th April 2020 12:59:17 am
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -15,12 +15,14 @@ import { Cron } from '@nestjs/schedule';
 import { WorldService } from '../world.service';
 import { PushNotificationService } from 'src/modules/communication/push-notification/push-notification.service';
 import { WorldHelper } from '../world.helper';
+import { SmsService } from 'src/modules/communication/sms/sms.service';
 
 @Injectable()
 export class WorldCronService {
   constructor(
     private worldService: WorldService,
     private pushNotificationService: PushNotificationService,
+    private smsService: SmsService,
   ) {}
 
   @Cron('* * 2 * * *')
@@ -32,9 +34,12 @@ export class WorldCronService {
     timeZone: 'Asia/Kolkata',
   })
   async sendIndiaStats() {
-    this.worldService.getWorldStats().subscribe(data => {
-      const message = WorldHelper.constructDailyStatsPushMessage(data);
-      this.pushNotificationService.sendPushNotification(message);
+    this.worldService.getWorldStats().subscribe(async data => {
+      const pushMessage = WorldHelper.constructDailyStatsPushMessage(data);
+      const smsMessage = WorldHelper.constructDailyStatsSMSMessage(data);
+      const numbersToSendSMS = await this.smsService.getVerifiedPhoneNumbers();
+      this.pushNotificationService.sendPushNotificationToTopic(pushMessage);
+      this.smsService.sendBulkSMS({ to: numbersToSendSMS, body: smsMessage });
     });
   }
 }

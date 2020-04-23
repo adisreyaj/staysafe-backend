@@ -4,7 +4,7 @@
  * File Created: Monday, 13th April 2020 8:14:23 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Tuesday, 14th April 2020 1:45:56 am
+ * Last Modified: Friday, 24th April 2020 12:36:42 am
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -73,6 +73,18 @@ export class SmsService {
     }
   }
 
+  async sendBulkSMS({ to, body }: { to: string[]; body: string }) {
+    if (to && Array.isArray(to) && to.length > 0) {
+      return Promise.all(
+        to.map(number => {
+          return this.sendSMS({ to: number, body });
+        }),
+      );
+    } else {
+      return undefined;
+    }
+  }
+
   /**
    * Save a phone number to the Database.
    * First it checks whether the phone number has already been registered in the system or not.
@@ -94,7 +106,7 @@ export class SmsService {
     try {
       await phoneNumberToSave.save();
       this.callForVerification(phone);
-      return 'Number subscribed successfully';
+      return { message: 'Number subscribed successfully' };
     } catch (error) {
       Logger.error(`[Push Notification Save] Failed with ${error}`);
       return undefined;
@@ -118,6 +130,14 @@ export class SmsService {
     return undefined;
   }
 
+  async getVerifiedPhoneNumbers() {
+    const numbers = await this.smsModel
+      .find({ verified: true })
+      .lean()
+      .exec();
+    if (numbers && numbers.length > 0) return numbers.map(item => item.phone);
+    return undefined;
+  }
   private callForVerification(phone: string) {
     return this.callService.createVerificationCall(phone);
   }

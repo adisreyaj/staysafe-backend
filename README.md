@@ -14,6 +14,15 @@
 
 > Stay Safe is an application to track and learn about Pandemic disease and how to fight them.
 
+## 🔥 Features
+
+- Modularized design
+- MongoDB as the Database
+- Communication Queue for processing SMS, Notifications, and Emails
+- Encryption of firebase configuration for easy deployment
+- Caching of Data for better performance
+- Cron Job for automatic updates of data and sending out notifications
+
 ## 🚀 Usage
 
 Make sure you have the pre-requisites installed on your system. You can start by cloning/downloading the repo to your local system.
