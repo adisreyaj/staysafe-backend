@@ -4,7 +4,7 @@
  * File Created: Friday, 10th April 2020 7:33:13 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Monday, 20th April 2020 11:48:54 pm
+ * Last Modified: Friday, 24th April 2020 12:59:05 am
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -40,10 +40,11 @@ export class PushNotificationService {
     try {
       await admin.messaging().subscribeToTopic(tokenDTO.token, 'general');
       Logger.debug(`[Saving Push Notification] Subscribed to Topic`);
-      this.sendPushNotification({
+      this.sendPushNotificationToToken({
         title: 'Welcome to StaySafe',
         body:
           'Thankyou for subscribing, we will be sending you timley notifications so that you can be aware of the situations around you',
+        token: tokenDTO.token,
       });
       return await tokenToSave.save();
     } catch (error) {
@@ -52,7 +53,7 @@ export class PushNotificationService {
     }
   }
 
-  async sendPushNotification(data: { title: string; body: string }) {
+  async sendPushNotificationToTopic(data: { title: string; body: string }) {
     try {
       await admin
         .messaging()
@@ -62,8 +63,39 @@ export class PushNotificationService {
       Logger.error(`[Push Notification] Failed with ${error}`);
     }
   }
+  async sendPushNotificationToToken(data: {
+    title: string;
+    body: string;
+    token: string;
+  }) {
+    try {
+      await admin
+        .messaging()
+        .send(this.createPushNotificationMessageForToken(data));
+      return 'Sent';
+    } catch (error) {
+      Logger.error(`[Push Notification] Failed with ${error}`);
+    }
+  }
 
   private createPushNotificationMessageForTopic({ title, body }) {
+    const notificationData = this.contructNotificationmessage({ title, body });
+    const pushNoitifcationMessage: admin.messaging.Message = {
+      webpush: notificationData,
+      topic: 'general',
+    };
+    return pushNoitifcationMessage;
+  }
+  private createPushNotificationMessageForToken({ title, body, token }) {
+    const notificationData = this.contructNotificationmessage({ title, body });
+    const pushNoitifcationMessage: admin.messaging.Message = {
+      webpush: notificationData,
+      token,
+    };
+    return pushNoitifcationMessage;
+  }
+
+  private contructNotificationmessage({ title, body }) {
     const notificationData: admin.messaging.WebpushConfig = {
       notification: {
         title,
@@ -79,10 +111,6 @@ export class PushNotificationService {
         link: 'https://staysafe.sreyaj.com',
       },
     };
-    const pushNoitifcationMessage: admin.messaging.Message = {
-      webpush: notificationData,
-      topic: 'general',
-    };
-    return pushNoitifcationMessage;
+    return notificationData;
   }
 }

@@ -4,7 +4,7 @@
  * File Created: Sunday, 19th April 2020 1:33:20 am
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Friday, 24th April 2020 12:36:51 am
+ * Last Modified: Friday, 24th April 2020 12:59:15 am
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -36,7 +36,7 @@ export class IndiaCronService {
       const pushMessage = IndiaHelper.constructDailyStatsPushMessage(data);
       const smsMessage = IndiaHelper.constructDailyStatsSMSMessage(data);
       const numbersToSendSMS = await this.smsService.getVerifiedPhoneNumbers();
-      this.pushNotificationService.sendPushNotification(pushMessage);
+      this.pushNotificationService.sendPushNotificationToTopic(pushMessage);
       this.smsService.sendBulkSMS({ to: numbersToSendSMS, body: smsMessage });
     });
   }

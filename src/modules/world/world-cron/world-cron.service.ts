@@ -4,7 +4,7 @@
  * File Created: Sunday, 19th April 2020 1:36:04 am
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Friday, 24th April 2020 12:39:03 am
+ * Last Modified: Friday, 24th April 2020 12:59:17 am
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -38,7 +38,7 @@ export class WorldCronService {
       const pushMessage = WorldHelper.constructDailyStatsPushMessage(data);
       const smsMessage = WorldHelper.constructDailyStatsSMSMessage(data);
       const numbersToSendSMS = await this.smsService.getVerifiedPhoneNumbers();
-      this.pushNotificationService.sendPushNotification(pushMessage);
+      this.pushNotificationService.sendPushNotificationToTopic(pushMessage);
       this.smsService.sendBulkSMS({ to: numbersToSendSMS, body: smsMessage });
     });
   }

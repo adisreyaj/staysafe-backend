@@ -4,7 +4,7 @@
  * File Created: Monday, 13th April 2020 9:45:22 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Monday, 20th April 2020 11:51:11 pm
+ * Last Modified: Friday, 24th April 2020 12:54:29 am
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -24,7 +24,7 @@ import { PushNotificationService } from './push-notification.service';
 export class PushNotificationController {
   constructor(private pushNotificationService: PushNotificationService) {}
 
-  @Post('push/token')
+  @Post('token')
   async savePushNotificationToken(@Body() token: PushTokenDTO) {
     const tokenSaved = await this.pushNotificationService.saveToken(token);
     if (!tokenSaved) {
