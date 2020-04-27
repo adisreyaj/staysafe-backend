@@ -4,7 +4,7 @@
  * File Created: Monday, 20th April 2020 11:40:06 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Friday, 24th April 2020 12:29:17 am
+ * Last Modified: Monday, 27th April 2020 11:52:08 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -16,7 +16,7 @@ export class IndiaHelper {
     data: Omit<StateData, 'state statecode'>,
   ) {
     const { active, recovered, deaths, confirmed } = data;
-    const body = `Here is the daily report of COVID19 Cases:
+    const body = `Here is the daily report of COVID19 Cases in India:
           Active: ${active}
           Confirmed: ${confirmed}
           Recovered: ${recovered},
@@ -32,7 +32,7 @@ export class IndiaHelper {
   ) {
     const { active, recovered, deaths, confirmed } = data;
     const message =
-      'Here is the daily report of COVID19 Cases:' +
+      'Here is the daily report of COVID19 Cases in India:' +
       `Active: ${active}` +
       `Confirmed: ${confirmed}` +
       `Recovered: ${recovered},` +

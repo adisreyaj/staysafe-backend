@@ -4,7 +4,7 @@
  * File Created: Sunday, 5th April 2020 9:22:14 pm
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Friday, 24th April 2020 12:38:34 am
+ * Last Modified: Monday, 27th April 2020 11:52:40 pm
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -51,7 +51,7 @@ export class WorldHelper {
     data: Pick<WorldStatsData, 'active' | 'deaths' | 'recovered'>,
   ) {
     const { active, recovered, deaths } = data;
-    const body = `Here is the daily report of COVID19 Cases:
+    const body = `Here is the daily report of COVID19 Cases Worldwide:
           Active: ${active}
           Recovered: ${recovered},
           Deaths: ${deaths}
@@ -66,7 +66,7 @@ export class WorldHelper {
   ) {
     const { active, recovered, deaths } = data;
     const message =
-      'Here is the daily report of COVID19 Cases:' +
+      'Here is the daily report of World COVID19 Cases in India:' +
       `Active: ${active}` +
       `Recovered: ${recovered},` +
       `Deaths: ${deaths}` +
