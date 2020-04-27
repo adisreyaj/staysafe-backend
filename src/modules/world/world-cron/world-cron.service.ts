@@ -4,7 +4,7 @@
  * File Created: Sunday, 19th April 2020 1:36:04 am
  * Author: Adithya Sreyaj
  * -----
- * Last Modified: Monday, 27th April 2020 11:52:16 pm
+ * Last Modified: Tuesday, 28th April 2020 12:02:50 am
  * Modified By: Adithya Sreyaj<adi.sreyaj@gmail.com>
  * -----
  */
@@ -30,7 +30,7 @@ export class WorldCronService {
     this.worldService.refreshWorldData();
   }
 
-  @Cron('0 0 8 * * ?', {
+  @Cron('0 0 8 * * *', {
     timeZone: 'Asia/Kolkata',
   })
   async sendIndiaStats() {
